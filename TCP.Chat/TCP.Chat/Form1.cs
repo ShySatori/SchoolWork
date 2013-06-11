@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Sockets;
+using System.Net;
 
 namespace TCP.Chat
 {
@@ -15,6 +17,7 @@ namespace TCP.Chat
         public Form1()
         {
             InitializeComponent();
+            TcpClient client = new TcpClient("127.0.0.1", 4242);            
         }
     }
 }

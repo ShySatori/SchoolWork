@@ -23,6 +23,7 @@ namespace TCP.Server
             InitializeComponent();
             this.Show();
             Thread ownThread = new Thread(new ThreadStart(thread1));
+            ownThread.Start();
         }
         public void thread1()
         {
@@ -30,11 +31,11 @@ namespace TCP.Server
             {
                 TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 4242);
                 server.Start();
+                TcpClient client = server.AcceptTcpClient();
                 while (!turnOff)
                 {
-                    TcpClient client = server.AcceptTcpClient(); a++;
+                    a++;
                     NetworkStream stream = client.GetStream();
-                    MessageBox.Show(stream.ToString());
                 }
                 
             }
