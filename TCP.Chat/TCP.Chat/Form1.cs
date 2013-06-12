@@ -16,6 +16,7 @@ namespace TCP.Chat
     {
         string ip;
         int port;
+        public TcpClient client;
         public Form1()
         {
             ip = "127.0.0.1";
@@ -32,7 +33,13 @@ namespace TCP.Chat
         {
             try
             {
-                TcpClient client = new TcpClient(ip, port);
+                if (client != null)
+                {
+                    client.Client.Shutdown(SocketShutdown.Both);
+                    client.Close();
+                }
+                client = new TcpClient();
+                client.Connect(ip, port);                
             }
             catch (SocketException e)
             {

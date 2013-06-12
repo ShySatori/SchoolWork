@@ -50,8 +50,8 @@ namespace TCP.Server
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {
-            AllClients = AllClients.Where(z => z.Connected).ToList();
+        {            
+            AllClients = AllClients.Except(AllClients.Where(z => z.Client.Available == 0)).ToList();
             NowConnectedLabel.Text = AllClients.Count.ToString();
             if (taskWaiting.IsCompleted)
             {
@@ -62,3 +62,4 @@ namespace TCP.Server
         }
     }
 }
+
