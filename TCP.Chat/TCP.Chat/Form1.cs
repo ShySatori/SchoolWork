@@ -14,10 +14,30 @@ namespace TCP.Chat
 {
     public partial class Form1 : Form
     {
+        string ip;
+        int port;
         public Form1()
         {
-            InitializeComponent();
-            TcpClient client = new TcpClient("127.0.0.1", 4242);            
+            ip = "127.0.0.1";
+            port = 4242;
+            InitializeComponent();    
+        }
+
+        private void ConnectButton_Click(object sender, EventArgs e)
+        {
+            ConnectToServer(ip, port);
+        }
+
+        private void ConnectToServer(string ip, int port)
+        {
+            try
+            {
+                TcpClient client = new TcpClient(ip, port);
+            }
+            catch (SocketException e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
     }
 }
